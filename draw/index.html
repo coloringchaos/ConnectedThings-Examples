@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.4/p5.js" type="text/javascript"></script>
+    <script src="sketch.js" type="text/javascript"></script>
+
+    <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+    <script type="text/javascript">
+      var socket = io.connect('http://YOUR-IP:8080/');
+
+      socket.on('connect', function() {
+        console.log("Connected!");
+      });
+
+      // Receive from any event
+      socket.on('othermouse', function (data) {
+        // console.log(data.x + " " + data.y);
+        odraw(data.x,data.y, data.r, data.g, data.b);
+      });
+
+    </script>
+
+    <style>
+      body{
+        padding: 0;
+        margin: 0;
+      }
+      canvas{
+        vertical-align: top;
+      }
+    </style>
+
+  </head>
+  <body>
+
+  </body>
+</html>
